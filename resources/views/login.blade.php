@@ -1,4 +1,4 @@
-@extends('layouts.main')ndsbqb
+@extends('layouts.main')
 
 @section('content')
 
