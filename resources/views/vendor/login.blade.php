@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.pain')
 
 @section('content')
 
@@ -33,7 +33,7 @@
 
                     <!-- Register link -->
                     <p class="text-center mt-3">
-                        Don't have an account? <a href="{{ url('signup') }}">Sign-up</a>
+                        Don't have an account? <a href="{{ url('vendor/signup') }}">Sign-up</a>
                     </p>
                 </form>
             </div>

@@ -52,9 +52,9 @@ Route::get('/order-success', function() {
 
 // for login ----------------- 
 
-Route::get('/login', function() {
-    return view('login');
-})->name('login');
+// Route::get('/login', function() {
+//     return view('login');
+// })->name('login');
 
 
 
@@ -85,7 +85,12 @@ Route::get('/nav_product', function() {
 
 
 Route::get('vendor/signup',[VendorController::class,'signup'])->name('signup');
-Route::get('vendor/signup',[VendorController::class,'register']);
+Route::post('vendor/signup',[VendorController::class,'register']);
+
+
+// for login
+
+Route::get('vendor/login',[VendorController::class,'login'])->name('login');
 
 
 
