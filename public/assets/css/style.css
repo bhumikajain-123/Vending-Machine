@@ -95,3 +95,34 @@ body {
     border-radius: 10px;
 }
 
+/* for side bar----------- */
+
+
+ .sidebar {
+            background: #000;
+            color: white;
+            height: 100vh;
+            padding: 20px;
+        }
+        .sidebar a {
+            color: white;
+            display: block;
+            padding: 8px 0;
+            text-decoration: none;
+        }
+        .card-custom {
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+        }
+        .card-orders { background: #007bff; }
+        .card-sales { background: #f0ad4e; }
+        .card-pending { background: #d9534f; }
+
+        .sidebar ul{
+    list-style: none;
+    padding-left: 0;
+}
+
+
+

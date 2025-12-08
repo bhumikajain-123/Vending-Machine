@@ -8,6 +8,8 @@ use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\VendorController;
+use App\Http\Middleware\Vendor;
+
 
 
 Route::get('/', function () {
@@ -91,6 +93,24 @@ Route::post('vendor/signup',[VendorController::class,'register']);
 // for login
 
 Route::get('vendor/login',[VendorController::class,'login'])->name('login');
+Route::post('vendor/login',[VendorController::class,'login_check'])->name('login_check');
+
+
+
+// dashboard--
+// Route::get('vendor/dashboard',[VendorController::class,'dashboard'])->name('vendor/dashboard')->Middleware(Vendor::class);
+
+// // logout --
+
+// Route::get('vendor/logout',[VendorController::class,'logout'])->name('vendor/logout');
+
+
+Route::middleware([Vendor::class])->group(function () {
+
+    Route::get('vendor/dashboard', [VendorController::class, 'dashboard'])->name('vendor.dashboard');
+    Route::get('vendor/logout', [VendorController::class, 'logout'])->name('vendor.logout');
+
+});
 
 
 
