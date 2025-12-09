@@ -14,6 +14,7 @@ class CategoryController extends Controller
     }
 
     public function view_products(){
+          $categories = AdminCategory::all();
         return view('admin.view_product',compact('categories'));
     }
 
