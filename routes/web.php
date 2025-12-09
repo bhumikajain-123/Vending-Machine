@@ -1,110 +1,84 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\SubcategoryController;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\CheckoutController;
+
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\Admin\CategoryController;
+
+// use App\Http\Controllers\HomeController;
+// use App\Http\Controllers\CategoryController;
+// use App\Http\Controllers\SubcategoryController;
+// use App\Http\Controllers\ProductController;
+// use App\Http\Controllers\CartController;
+
+
+
+// use App\Http\Controllers\Admin\ItemController;
+
+// use App\Http\Controllers\AdminController;
+// use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+
 use App\Http\Middleware\Vendor;
 
-
+// ---------------- Home -------------------
 
 Route::get('/', function () {
     return view('welcome');
 });
-//  home page------------
 
 Route::get('/home',[HomeController::class,'index'])->name('home');
 
-// category -----------
+
+// ---------------- Category -------------------
 
 Route::get('/category/{slug}/{id}', [CategoryController::class, 'detail'])
      ->name('category.detail');
 
-    //  sub category-------
 Route::get('/category/electronic/{slug}', [SubcategoryController::class, 'detail']);
 
-// product-----------
+
+// ---------------- Product -------------------
 
 Route::get('/product/{id}', [ProductController::class, 'detail'])->name('product.detail');
 
-//---------------------- cart----------
 
-//add  to the cart-------------
+// ---------------- Cart -------------------
+
 Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
-
 Route::get('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
 
-// checkout-----------
-// Route::get('/checkout',function(){
-//     return view('checkout');
-// });
+
+// ---------------- Checkout -------------------
+
 Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
 
 
-
-// order success----------------
+// ---------------- Order success -------------------
 
 Route::get('/order-success', function() {
     return view('order-success');
 })->name('order.success');
 
-// for login ----------------- 
 
-// Route::get('/login', function() {
-//     return view('login');
-// })->name('login');
+// ---------------- Static pages -------------------
 
-
-
-
-// nav product----------------------
-Route::get('/nav_product', function() {
-    return view('nav_product');
-})->name('nav_product');
-
-// about-----
-
-Route::get('/about', function() {
-    return view('about');
-})->name('about');
-
-// contact----
-Route::get('/contact', function() {
-    return view('contact');
-})->name('contact');
-
-// nav----
-Route::get('/nav_product', function() {
-    return view('nav_product');
-})->name('nav_product');
+Route::view('/nav_product','nav_product')->name('nav_product');
+Route::view('/about','about')->name('about');
+Route::view('/contact','contact')->name('contact');
 
 
-// vendor dashboard route start here--------
+// ---------------- Vendor -------------------
 
-
+// sign up
 Route::get('vendor/signup',[VendorController::class,'signup'])->name('signup');
 Route::post('vendor/signup',[VendorController::class,'register']);
 
-
-// for login
-
+// login
 Route::get('vendor/login',[VendorController::class,'login'])->name('login');
 Route::post('vendor/login',[VendorController::class,'login_check'])->name('login_check');
 
 
-
-// dashboard--
-// Route::get('vendor/dashboard',[VendorController::class,'dashboard'])->name('vendor/dashboard')->Middleware(Vendor::class);
-
-// // logout --
-
-// Route::get('vendor/logout',[VendorController::class,'logout'])->name('vendor/logout');
-
-
+// vendor protected pages
 Route::middleware([Vendor::class])->group(function () {
 
     Route::get('vendor/dashboard', [VendorController::class, 'dashboard'])->name('vendor.dashboard');
@@ -113,8 +87,21 @@ Route::middleware([Vendor::class])->group(function () {
 });
 
 
+// ---------------- Admin -------------------
+
+Route::get('/admin', [CategoryController::class, 'dashboard'])->name('dashboard');
+
+Route::get('admin/view_product', [CategoryController::class,'view_products'])->name('admin.view_product');
+
+Route::get('admin/add_product', [CategoryController::class,'add_product'])->name('admin.add_product');
+Route::post('admin/add_category', [CategoryController::class,'add_category'])->name('add_category');
 
 
+Route::get('admin/edit_category/{id}', [CategoryController::class, 'edit_category']);
+Route::post('admin/update_category/{id}', [CategoryController::class, 'update_category'])->name('admin.update_category');
+
+
+Route::delete('admin/delete_category/{id}', [CategoryController::class, 'delete_category'])->name('admin.delete_category');
 
 
 
