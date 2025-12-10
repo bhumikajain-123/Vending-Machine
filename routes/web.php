@@ -4,9 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\vendor\ProductController;
-
-// use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\HomeController;
 // use App\Http\Controllers\CategoryController;
 // use App\Http\Controllers\SubcategoryController;
 // use App\Http\Controllers\ProductController;
@@ -44,15 +43,32 @@ Route::get('/product/{id}', [ProductController::class, 'detail'])->name('product
 
 
 // ---------------- Cart -------------------
+use App\Http\Controllers\CartController;
 
-Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
-Route::get('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
+// Show cart items
+
+
+
+
+Route::get('cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
+Route::get('cart', [CartController::class, 'index'])->name('cart.index'); // Cart page
+Route::get('cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+
+
+
+
+// Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
+// Route::get('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
 
 
 // ---------------- Checkout -------------------
 
-Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
+// Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
+use App\Http\Controllers\CheckoutController;
 
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.page');
+Route::post('/checkout', [CheckoutController::class, 'placeOrder'])->name('checkout.placeorder');
+Route::get('/order-success', [CheckoutController::class, 'success'])->name('order.success');
 
 // ---------------- Order success -------------------
 
@@ -81,11 +97,15 @@ Route::post('vendor/login',[VendorController::class,'login_check'])->name('login
 
 // vendor protected pages
 Route::middleware([Vendor::class])->group(function () {
-
     Route::get('vendor/dashboard', [VendorController::class, 'dashboard'])->name('vendor.dashboard');
     Route::get('vendor/logout', [VendorController::class, 'logout'])->name('vendor.logout');
 
+    // Profile routes
+    Route::get('vendor/profile', [VendorController::class, 'vendor_profile'])->name('vendor.edit_profile');
+    Route::post('vendor/profile', [VendorController::class, 'update_profile'])->name('vendor.update_profile');
 });
+
+
 
 
 // ---------------- Admin -------------------

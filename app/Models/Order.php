@@ -3,11 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Order extends Model
 {
-      protected $fillable = [
-        'user_id', 'total_amount', 'status', 'payment_id'
+    use HasFactory;
+
+    protected $fillable = [
+        'user_name',
+        'total_price',
     ];
 
     public function items()

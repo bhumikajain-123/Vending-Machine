@@ -31,7 +31,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-white" href="#">Profile</a>
+                <a class="nav-link text-white" href="{{ url('/vendor/profile') }}">Profile</a>
             </li>
 
             <!-- <li class="nav-item">

@@ -89,4 +89,48 @@ class VendorController extends Controller
         return redirect('vendor/login');
     }
 
+
+    public function vendor_profile() {
+    $vendor = Vendor::find(session('vendorId')); // get logged-in vendor
+    return view('vendor.profile', compact('vendor'));
+}
+
+// update profile
+public function update_profile(Request $req) {
+    $vendor = Vendor::find(session('vendorId'));
+
+    if(!$vendor){
+        return redirect()->back()->with('error', 'Vendor not logged in!');
+    }
+
+    $req->validate([
+        "full_name" => "required",
+        "phone"     => "required|regex:/^[6-9][0-9]{9}$/|unique:vendors,phone,".$vendor->id,
+        "email"     => "required|email|unique:vendors,email,".$vendor->id,
+        "address"   => "required",
+        "password"  => "nullable|min:6",
+        "image"     => "nullable|mimes:jpg,jpeg,png"
+    ]);
+
+    $vendor->full_name = $req->full_name;
+    $vendor->phone     = $req->phone;
+    $vendor->email     = $req->email;
+    $vendor->address   = $req->address;
+
+    if($req->password){
+        $vendor->password = bcrypt($req->password);
+    }
+
+    if($req->hasFile('image')){
+        $file = $req->file('image');
+        $filename = time().'.'.$file->getClientOriginalExtension();
+        $file->move(public_path('vendor_img'), $filename);
+        $vendor->image = $filename;
+    }
+
+    $vendor->save();
+
+    return redirect()->back()->with("success","Profile Updated Successfully!");
+}
+
 }
