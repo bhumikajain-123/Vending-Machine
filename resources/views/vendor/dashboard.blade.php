@@ -9,7 +9,7 @@
 
         <!-- Sidebar -->
         <div class="col-md-2 sidebar">
-             <x-sidebar/>
+            <x-side-bar-vendor />
         </div>
 
         <!-- Main Content -->

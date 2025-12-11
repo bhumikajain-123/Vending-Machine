@@ -33,11 +33,11 @@ class ProductController extends Controller
         ]);
 
         $filename = null;
-        if($req->hasFile('vp_image')){
-            $file = $req->file('vp_image');
-            $filename = time().'_'.$file->getClientOriginalName();
-            $file->move(public_path('uploads'), $filename);
-        }
+       if($req->hasFile('vp_image')){
+    $file = $req->file('vp_image');
+    $filename = time().'_'.$file->getClientOriginalName();
+    $file->move(public_path('uploads/product'), $filename);
+}
 
         // Get vendor ID from session
         $vendorId = session('vendorId');
@@ -97,9 +97,9 @@ class ProductController extends Controller
     public function delete_product($id){
         $product = v_product::findOrFail($id);
 
-        if($product->p_image && file_exists(public_path('uploads/vendor/'.$product->p_image))){
-            unlink(public_path('uploads/vendor/'.$product->p_image));
-        }
+       if($product->p_image && file_exists(public_path('uploads/product/'.$product->p_image))){
+    unlink(public_path('uploads/product/'.$product->p_image));
+}
 
         $product->delete();
         return redirect()->back()->with('success', 'Product Deleted Successfully!');
