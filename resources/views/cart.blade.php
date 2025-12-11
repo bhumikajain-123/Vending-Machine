@@ -6,7 +6,6 @@
     <h2 class="mb-4 fw-bold">Your Cart</h2>
 
     @php
-        // Get cart from session
         $cart = session('cart', []); 
         $grandTotal = 0;
     @endphp
@@ -26,27 +25,29 @@
             </thead>
 
             <tbody>
-                @foreach($cart as $id => $qty)
+                @foreach($cart as $id => $item)
                     @php
-                        $product = \App\Models\UserProduct::find($id); // Make sure your model is correct
+                        $total = $item['price'] * $item['qty'];
+                        $grandTotal += $total;
                     @endphp
 
-                    @if($product)
-                        @php
-                            $total = $product->price * $qty;
-                            $grandTotal += $total;
-                        @endphp
+                    <tr>
+                        <td>{{ $item['name'] }}</td>
 
-                        <tr>
-                            <td>{{ $product->name }}</td>
-                            <td>₹{{ number_format($product->price) }}</td>
-                            <td>{{ $qty }}</td>
-                            <td>₹{{ number_format($total) }}</td>
-                            <td>
-                                <a href="{{ url('cart/remove/'.$product->id) }}" class="btn btn-danger btn-sm">Remove</a>
-                            </td>
-                        </tr>
-                    @endif
+                        <td>₹{{ number_format($item['price']) }}</td>
+
+                        <td>
+                            <a href="{{ url('cart/decrease/'.$item['p_id']) }}" class="btn btn-sm btn-secondary">-</a>
+                            <span class="mx-2">{{ $item['qty'] }}</span>
+                            <a href="{{ url('cart/add/'.$item['p_id']) }}" class="btn btn-sm btn-success">+</a>
+                        </td>
+
+                        <td>₹{{ number_format($total) }}</td>
+
+                        <td>
+                            <a href="{{ url('cart/remove/'.$item['p_id']) }}" class="btn btn-danger btn-sm">Remove</a>
+                        </td>
+                    </tr>
                 @endforeach
 
                 <tr class="table-secondary">

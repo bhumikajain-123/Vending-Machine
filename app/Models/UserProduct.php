@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserProduct extends Model
 {
-    protected $table = "products"; // your DB table name
-
+    protected $table = "v_item"; // your DB table name
+     protected $primaryKey = 'p_id'; 
     protected $fillable = [
-        'name',
-        'price',
-        'image',
-        'description'
+        'p_name',
+        'p_price',
+        'p_image',
+        'p_description'
     ];
 }

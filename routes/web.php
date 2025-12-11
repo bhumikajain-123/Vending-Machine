@@ -4,12 +4,10 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\vendor\ProductController;
 use App\Http\Controllers\HomeController;
 // use App\Http\Controllers\CategoryController;
 // use App\Http\Controllers\SubcategoryController;
-// use App\Http\Controllers\ProductController;
-// use App\Http\Controllers\CartController;
 
 
 
@@ -44,21 +42,15 @@ Route::get('/product/{id}', [ProductController::class, 'detail'])->name('product
 
 // ---------------- Cart -------------------
 use App\Http\Controllers\CartController;
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
-// Show cart items
+Route::get('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
 
+Route::get('/cart/decrease/{id}', [CartController::class, 'decrease'])->name('cart.decrease');
 
-
-
-Route::get('cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
-Route::get('cart', [CartController::class, 'index'])->name('cart.index'); // Cart page
-Route::get('cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+Route::get('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
 
 
-
-
-// Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
-// Route::get('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
 
 
 // ---------------- Checkout -------------------
@@ -110,19 +102,19 @@ Route::middleware([Vendor::class])->group(function () {
 
 // ---------------- Admin -------------------
 
-Route::get('/admin', [CategoryController::class, 'dashboard'])->name('dashboard');
+// Route::get('/admin', [CategoryController::class, 'dashboard'])->name('dashboard');
 
-Route::get('admin/view_product', [CategoryController::class,'view_products'])->name('admin.view_product');
+// Route::get('admin/view_product', [CategoryController::class,'view_products'])->name('admin.view_product');
 
-Route::get('admin/add_product', [CategoryController::class,'add_product'])->name('admin.add_product');
-Route::post('admin/add_category', [CategoryController::class,'add_category'])->name('add_category');
-
-
-Route::get('admin/edit_category/{id}', [CategoryController::class, 'edit_category']);
-Route::post('admin/update_category/{id}', [CategoryController::class, 'update_category'])->name('admin.update_category');
+// Route::get('admin/add_product', [CategoryController::class,'add_product'])->name('admin.add_product');
+// Route::post('admin/add_category', [CategoryController::class,'add_category'])->name('add_category');
 
 
-Route::delete('admin/delete_category/{id}', [CategoryController::class, 'delete_category'])->name('admin.delete_category');
+// Route::get('admin/edit_category/{id}', [CategoryController::class, 'edit_category']);
+// Route::post('admin/update_category/{id}', [CategoryController::class, 'update_category'])->name('admin.update_category');
+
+
+// Route::delete('admin/delete_category/{id}', [CategoryController::class, 'delete_category'])->name('admin.delete_category');
 
 
 
