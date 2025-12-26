@@ -2,63 +2,77 @@
 
 @section('content')
 
+<div style="background:#8fd3f4; min-height:100vh; padding-top:60px;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
 
-
-<div class="container my-5">
-    <div class="row justify-content-center">
-        <div class="col-md-5">
-
-            <div class="card p-4 shadow-sm">
-                <h2 class="text-center mb-4 fw-bold">Login</h2>
-                @if(session('error'))
-   <div id="success-msg" style="background-color: #a9795fff; color: white; padding: 10px; margin-bottom: 10px; border-radius: 5px;">
-
-    {{ session('error') }}
-
-    <script>
-        
-        // setTimeout(() => {
-        //     var messg = document.getElementById('error-mess');
-        //     if (messg) {
-        //         messg.style.display = 'none';
-        //     }
-        // }, 3000);
-    </script>
-</div>
-@endif
-
-                <form method="POST" action="{{ url('vendor/login') }}">
-                    @csrf
+                <div class="card shadow-lg border-0 rounded-4 p-4">
                     
-                    <!-- Email -->
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email address</label>
-                        <input type="email" name="email" class="form-control" id="email"
-                            value="{{ old('email') }}" placeholder="Enter your email">
-                    </div>
-                    @error('email')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-
-                    <!-- Password -->
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" name="password" class="form-control" id="password"
-                            placeholder="Enter your password">
-                    </div>
-                    @error('password')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-
-                    <!-- Submit Button -->
-                    <button type="submit" class="btn btn-primary w-100">Login</button>
-
-                    <p class="text-center mt-3">
-                        Don't have an account? <a href="{{ url('vendor/signup') }}">Sign-up</a>
+                    <!-- Heading -->
+                    <h3 class="text-center fw-bold mb-1" style="color:#ff9800;">
+                        Snack Corner
+                    </h3>
+                    <p class="text-center text-muted mb-4">
+                        Vendor Login
                     </p>
-                </form>
-            </div>
 
+                    <!-- Error Message -->
+                    @if(session('error'))
+                        <div class="alert alert-danger text-center">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+
+                    <form method="POST" action="{{ url('vendor/login') }}">
+                        @csrf
+
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Email Address</label>
+                            <input type="email" 
+                                   name="email" 
+                                   class="form-control rounded-3"
+                                   placeholder="Enter your email"
+                                   value="{{ old('email') }}">
+                            @error('email')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+
+                        <!-- Password -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Password</label>
+                            <input type="password" 
+                                   name="password" 
+                                   class="form-control rounded-3"
+                                   placeholder="Enter your password">
+                            @error('password')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+
+                        <!-- Login Button -->
+                        <button type="submit" 
+                                class="btn w-100 text-white fw-bold rounded-3"
+                                style="background:#2196f3;">
+                            Login
+                        </button>
+
+                        <!-- Signup -->
+                        <p class="text-center mt-3">
+                            Don’t have an account?
+                            <a href="{{ url('vendor/signup') }}" 
+                               class="fw-semibold text-decoration-none"
+                               style="color:#ff9800;">
+                                Sign Up
+                            </a>
+                        </p>
+
+                    </form>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>
