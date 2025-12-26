@@ -15,34 +15,32 @@ Swal.fire({
 </script>
 @endif
 
+<div class="container-fluid g-0">
 
-<div class="container-fluid">
-    <div class="row">
+    {{-- Sidebar --}}
+    <div class="sidebar">
+        <x-side-bar-vendor />
+    </div>
 
-        {{-- Sidebar  --}}
-        <div class="col-md-2 sidebar">
-            <x-side-bar-vendor />
-        </div>
+    {{-- Main Content --}}
+    <div class="main-content">
 
-
-        {{-- Main Content --}}
-        <div class="col-md-10">
-
-            <nav class="navbar navbar-dark bg-dark px-4">
-                <a class="navbar-brand" href="#">VENDOMART</a>
-                <span class="text-light">Logged in : admin</span>
-            </nav>
-
+        <!-- Top Navbar -->
+        <nav class="navbar navbar-dark bg-dark px-4">
+            <span class="navbar-brand fw-bold">VENDOMART</span>
+            <span class="text-light">
+                <i class="bi bi-person-circle"></i>
+                {{ session('name') }}
+            </span>
+        </nav>
 
             <div class="container mt-4">
                 <div class="card shadow p-4">
 
                     <h3 class="mb-4">Add Product</h3>
 
-
                     <form method="post" action="#" enctype="multipart/form-data">
                         @csrf
-
                         <div class="row">
 
                             {{-- LEFT part --}}
@@ -50,54 +48,37 @@ Swal.fire({
 
                                 <div class="mb-3">
                                     <label>Product Name</label>
-                                    <input type="text"
-                                        class="form-control form-control-sm"
-                                        name="vp_name"
-                                        placeholder="Watch">
-                                          @error('vp_name')
-        <span class="text-danger">{{ $message }}</span>
-    @enderror
-
+                                    <input type="text" class="form-control form-control-sm" name="vp_name" placeholder="Enter Name Of Product">
+                                    @error('vp_name') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="mb-3">
                                     <label>Price</label>
-                                    <input type="number"
-                                        class="form-control form-control-sm"
-                                        name="vp_price"
-                                        placeholder="₹ 1499.00">
-                                        @error('vp_price')        <span class="text-danger">{{ $message }}</span> @enderror
+                                    <input type="number" class="form-control form-control-sm" name="vp_price" placeholder="Enter Price Of Product">
+                                    @error('vp_price') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="mb-3">
                                     <label>Category</label>
-                                    <input type="text" class="form-control form-control-sm"
-                                        name="vp_category">
-                                        
-                                    @error('vp_category')        <span class="text-danger">{{ $message }}</span> @enderror
+                                    <input type="text" class="form-control form-control-sm" name="vp_category" placeholder="Enter Category Of Product">
+                                    @error('vp_category') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="mb-3">
                                     <label>Stock Quantity</label>
-                                    <input type="number"
-                                        class="form-control form-control-sm"
-                                        name="vp_stock"
-                                        placeholder="25 pcs">
-                                        @error('vp_stock')  <span class="text-danger">{{ $message }}</span> @enderror
+                                    <input type="number" class="form-control form-control-sm" name="vp_stock" placeholder="Enter Stock Of Product">
+                                    @error('vp_stock') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="mb-3">
                                     <label>Product Description</label>
-                                    <textarea class="form-control form-control-sm"
-                                        name="vp_description"
-                                        placeholder="Fill product description here"></textarea>
-                                        @error('vp_description')  <span class="text-danger">{{ $message }}</span> @enderror
+                                    <textarea class="form-control form-control-sm" name="vp_description" placeholder="Fill product description here"></textarea>
+                                    @error('vp_description') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
 
-                               <input type="submit" class="btn btn-primary" value="Add Product">
+                                <input type="submit" class="btn btn-primary" value="Add Product">
 
                             </div>
-
 
                             {{-- IMAGE SECTION --}}
                             <div class="col-md-4 text-center">
@@ -111,36 +92,32 @@ Swal.fire({
 
                                 <label class="btn btn-dark btn-sm">
                                     Choose Image
-                                    <input  type="file" name="vp_image"
-                                        onchange="readURL(this)">
+                                    <input type="file" name="vp_image" onchange="readURL(this)">
                                 </label>
 
                             </div>
 
                         </div>
-
                     </form>
-
-
-                    {{-- Image Preview Script --}}
-                    <script>
-                    function readURL(input) {
-                        if(input.files && input.files[0]) {
-                            let reader = new FileReader();
-                            reader.onload = function(e){
-                                document.getElementById('previewImg').src = e.target.result;
-                            }
-                            reader.readAsDataURL(input.files[0]);
-                        }
-                    }
-                    </script>
 
                 </div>
             </div>
-
         </div>
 
     </div>
 </div>
+
+{{-- Image Preview Script --}}
+<script>
+function readURL(input) {
+    if(input.files && input.files[0]) {
+        let reader = new FileReader();
+        reader.onload = function(e){
+            document.getElementById('previewImg').src = e.target.result;
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+</script>
 
 @endsection

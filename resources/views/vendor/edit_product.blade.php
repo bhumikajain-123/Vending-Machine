@@ -46,7 +46,7 @@ Swal.fire({
                     <br>
 
                     <label>Category</label>
-                    <input type ="text" name="vp_category" class="form-control form-control-sm">
+                    <input type ="text" name="vp_category"  value="{{ $product->p_name }}" class="form-control form-control-sm">
                         
                     @error('vp_category') <span class="text-danger">{{ $message }}</span> @enderror
                     <br>
@@ -82,7 +82,7 @@ Swal.fire({
 
                     <label class="btn btn-dark btn-sm">
                         Change Image
-                        <input type="file" name="vp_image" onchange="readURL(this)">
+                        <input type="file" value = "p_image"  name="vp_image" onchange="readURL(this)">
                     </label>
 
                 </div>

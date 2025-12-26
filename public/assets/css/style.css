@@ -1,21 +1,65 @@
-
-/* Apply Lato font everywhere */
+/* -------------------------
+   Global Font
+-------------------------- */
 body {
     font-family: "Lato", sans-serif;
 }
 
-.theme-navbar{
-    background-color:#0066CC ;
+/* -------------------------
+   Sidebar Styles
+-------------------------- */
+.sidebar {
+    position: fixed;       /* Keep sidebar fixed */
+    top: 0;                
+    left: 0;               
+    width: 16.6667%;       /* Equivalent to Bootstrap col-lg-2 */
+    height: 100vh;         /* Full viewport height */
+    background-color: #000;
+    color: white;
+    padding: 20px;
+    overflow-y: auto;      /* Scroll if content exceeds height */
+    z-index: 1000;         /* Keep above main content if needed */
 }
-.theme-navbar2{
-    background-color:#87bef6 ;
-}
-.foot-color{
-     background-color:#0066CC ;
 
+.sidebar h4 {
+    margin-bottom: 20px;
+    font-weight: 600;
 }
 
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 
+.sidebar ul li {
+    margin-bottom: 15px;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.sidebar ul li a:hover {
+    background-color: #1a1a1a;
+}
+
+/* -------------------------
+   Main Content Styles
+-------------------------- */
+.main-content {
+    margin-left: 16.6667%; /* Prevent overlap with fixed sidebar */
+    padding: 20px;
+}
+
+/* -------------------------
+   Buttons (Cart / Login)
+-------------------------- */
 .btn-cart {
     background-color: orange;
     color: white;
@@ -27,18 +71,15 @@ body {
     transition: 0.3s ease;
 }
 
-/* Hover Effect */
 .btn-cart:hover {
-    background-color:black;  /* darker orange */
+    background-color: black;
     color: white;
     box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-    transform: translateY(-2px); /* small lift */
+    transform: translateY(-2px);
 }
 
-
-.btn-login{
+.btn-login {
     background-color: green;
-
     color: white;
     padding: 6px 14px;
     border-radius: 6px;
@@ -46,18 +87,25 @@ body {
     text-decoration: none;
     display: inline-block;
     transition: 0.3s ease;
-
 }
-/* Hover Effect */
+
 .btn-login:hover {
-    background-color: black;  /* darker orange */
+    background-color: black;
     color: white;
     box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-    transform: translateY(-2px); /* small lift */
-    opacity: 1;
+    transform: translateY(-2px);
 }
 
+/* -------------------------
+   Navbar & Footer Colors
+-------------------------- */
+.theme-navbar { background-color: #0066CC; }
+.theme-navbar2 { background-color: #87bef6; }
+.foot-color { background-color: #0066CC; }
 
+/* -------------------------
+   Carousel Styling
+-------------------------- */
 .carousel-item {
     position: relative;
     height: 450px;
@@ -65,7 +113,6 @@ body {
     background-color: black;
 }
 
-/* Blurred background */
 .carousel-item::before {
     content: "";
     position: absolute;
@@ -79,50 +126,18 @@ body {
     z-index: 1;
 }
 
-/* Main image */
-/* .carousel-item img {
+.carousel-item img {
+    height: 500px;
+    object-fit: cover;
+    border-radius: 10px;
     position: relative;
     z-index: 2;
-    width: 100%;
-    height: 100%;
-
-    object-fit: contain;  
-} */
-
-.carousel-item img {
-    height: 500px;     /* adjust height as you like */
-    object-fit: cover; /* keeps good quality */
-    border-radius: 10px;
 }
 
-/* for side bar----------- */
-
-
- .sidebar {
-            background: #000;
-            color: white;
-            height: 100vh;
-            padding: 20px;
-        }
-        .sidebar a {
-            color: white;
-            display: block;
-            padding: 8px 0;
-            text-decoration: none;
-        }
-        .card-custom {
-            padding: 20px;
-            border-radius: 10px;
-            color: white;
-        }
-        .card-orders { background: #007bff; }
-        .card-sales { background: #f0ad4e; }
-        .card-pending { background: #d9534f; }
-
-        .sidebar ul{
-    list-style: none;
-    padding-left: 0;
-}
-    
-
-
+/* -------------------------
+   Custom Cards
+-------------------------- */
+.card-custom { padding: 20px; border-radius: 10px; color: white; }
+.card-orders { background: #007bff; }
+.card-sales { background: #f0ad4e; }
+.card-pending { background: #d9534f; }
