@@ -57,13 +57,8 @@
             <h1 class="h3 m-0 snack-title text-center flex-grow-1">Snack Corner</h1>
 
             <!-- RIGHT: Login Button -->
-            <div class="d-flex align-items-center">
-                <a href="vendor/login" class="btn btn-sm btn-login text-light">
-                    <i class="fa-solid fa-user me-1"></i> Login
-                </a>
-            </div>
+           
 
-        </div>
     </nav>
 
     <!-- OPTIONAL SECOND NAVBAR -->
