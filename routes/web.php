@@ -61,7 +61,7 @@ Route::get('/order-success', function() {
 
 Route::view('/nav_product','nav_product')->name('nav_product');
 Route::view('/about','about')->name('about');
-Route::view('/contact','contact')->name('contact');
+Route::view('/contact','contact')->name('contact_manage');
 
 
 // ---------------- Vendor -------------------
