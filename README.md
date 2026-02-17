@@ -23,6 +23,18 @@ This project is a Laravel-based vending machine system that allows managing prod
 4. Run php artisan migrate
 5. Run php artisan serve
 
+## Screenshots
+
+### Admin Dashboard
+You can view the [Admin Dashboard Screenshot](https://github.com/bhumikajain-123/Vending-Machine/blob/main/screenshot/admin%20dashboard.png) here:
+
+![Admin Dashboard](https://github.com/bhumikajain-123/Vending-Machine/blob/main/screenshot/admin%20dashboard.png)
+
+### User Dashboard
+You can view the [User Dashboard Screenshot](https://github.com/bhumikajain-123/Vending-Machine/blob/main/screenshot/user%20dashboard.png) here:
+
+![User Dashboard](https://github.com/bhumikajain-123/Vending-Machine/blob/main/screenshot/user%20dashboard.png)
+
 ## Author
 Bhumika Jain
 
